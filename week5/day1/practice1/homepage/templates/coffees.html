@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+    <head>
+        <title>Coffee Management</title>
+        <link rel="stylesheet" href="{% static 'style.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}" type="text/css">
+    </head>
+
+    <body>
+        <div class="flex-container">
+            <div class="container-sm my-3" style="width: 500px; margin: 10px; background-color: #a1f7f7;">
+                <h1 class="flex-list-title">Coffee List</h1>
+                <ul>
+                {% for coffee in coffee_list %}
+                    <li>{{ coffee.name }}, {{ coffee.price }}, {{ coffee.stock }}, {{ coffee.drink_kind }}, {{ coffee.create_date}}</li>
+                {% endfor %}
+                </ul>
+            </div>
+
+            <div class="container-sm my-3" style="width: 500px; margin: 10px; background-color: lightpink;">
+                <h1 class="flex-form-title">Stock Management</h1>
+                <form method="POST">{% csrf_token %}
+                    {{ coffee_form.as_p }}
+                    <button type="submit" class="btn btn-primary btn-lg">Save</button>
+                </form>
+            </div>
+        </div>
+        
+    </body>
+</html>
